@@ -19,7 +19,7 @@ import tifffile as tiff
 import pandas as pd
 
 csv.field_size_limit(2147483647)
-base_dir = "C:/Users/Aidan/dstl-satellite-imagery-feature-detection"
+base_dir = os.getcwd()
 
 
 def get_scalers():
@@ -117,5 +117,5 @@ tiff.imshow(new_train_data[0])
 show_mask(new_train_labels[0][..., 1:].any(axis=2))
 
 ix = int(args[2])
-np.save("C:/Users/Aidan/dstl-satellite-imagery-feature-detection/data/train_data_" + str(ix) + ".npy", new_train_data)
-np.save("C:/Users/Aidan/dstl-satellite-imagery-feature-detection/labels/train_labels_" + str(ix) + ".npy", new_train_labels)
+np.save(os.path.join(base_dir, "data/train_data_" + str(ix) + ".npy"), new_train_data)
+np.save(os.path.join(base_dir, "labels/train_labels_" + str(ix) + ".npy"), new_train_labels)

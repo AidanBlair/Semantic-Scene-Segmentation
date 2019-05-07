@@ -34,8 +34,8 @@ from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_a
 # Set some parameters
 im_width = 160
 im_height = 160
-path_train = "C:/Users/Aidan/dstl-satellite-imagery-feature-detection/"
-path_test = "C:/Users/Aidan/dstl-satellite-imagery-feature-detection/"
+path_train = os.getcwd()
+path_test = os.getcwd()
 num_classes = 11
 image_shape = (160, 160)
 
@@ -44,8 +44,8 @@ image_shape = (160, 160)
 def get_data(data_folder):
     data = np.concatenate((np.load(os.path.join(data_folder, "data/train_data_0a.npy")), np.load(os.path.join(data_folder, "data/train_data_0b.npy")), np.load(os.path.join(data_folder, "data/train_data_0c.npy")), np.load(os.path.join(data_folder, "data/train_data_0d.npy"))), axis=0)
     labels = np.concatenate((np.load(os.path.join(data_folder, "labels/train_labels_0a.npy")), np.load(os.path.join("labels/train_labels_0b.npy")), np.load(os.path.join(data_folder, "labels/train_labels_0c.npy")), np.load(os.path.join(data_folder, "labels/train_labels_0d.npy"))), axis=0)
-    d#ata = np.load(os.path.join(data_folder, "data/train_data_0.npy"))
-    l#abels = np.load(os.path.join(data_folder, "labels/train_labels_0.npy"))
+    #data = np.load(os.path.join(data_folder, "data/train_data_0.npy"))
+    #labels = np.load(os.path.join(data_folder, "labels/train_labels_0.npy"))
     return data, labels
 
 
@@ -172,8 +172,8 @@ plt.legend()
 plt.show()
 
 # Load best model
-model.save_weights("C:/Users/Aidan/dstl-satellite-imagery-feature-detection/segmentation-model.h5")
-model.load_weights("C:/Users/Aidan/dstl-satellite-imagery-feature-detection/segmentation-model.h5")
+model.save_weights(os.path.join(path_train, "segmentation-model.h5"))
+model.load_weights(os.path.join(path_train, "segmentation-model.h5"))
 
 # Predict on train, val, and test
 preds_train = model.predict(X_train, verbose=True)
